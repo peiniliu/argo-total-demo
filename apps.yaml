@@ -1,0 +1,48 @@
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: online
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: online
+  source:
+    repoURL: https://github.com/peiniliu/argo-total-demo.git 
+    targetRevision: HEAD
+    path: online
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: online 
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: offline
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: offline
+  source:
+    repoURL: https://github.com/peiniliu/argo-total-demo.git 
+    targetRevision: HEAD
+    path: offline
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: offline
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+
