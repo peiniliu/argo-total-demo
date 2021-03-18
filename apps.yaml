@@ -3,19 +3,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: online
+  name: production
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: online
+  project: production
   source:
     repoURL: https://github.com/peiniliu/argo-total-demo.git 
     targetRevision: HEAD
-    path: online
+    path: production
   destination:
     server: https://kubernetes.default.svc
-    namespace: online 
+    namespace: production 
   syncPolicy:
     automated:
       selfHeal: true
@@ -26,19 +26,19 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: offline
+  name: staging
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: offline
+  project: staging
   source:
     repoURL: https://github.com/peiniliu/argo-total-demo.git 
     targetRevision: HEAD
-    path: offline
+    path: staging
   destination:
     server: https://kubernetes.default.svc
-    namespace: offline
+    namespace: staging
   syncPolicy:
     automated:
       selfHeal: true

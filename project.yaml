@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: online
+  name: production
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -26,7 +26,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: offline
+  name: staging
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
